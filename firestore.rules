@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {	
+  // listings
+  match /databases/{database}/documents {
+    match /listings/{listing_id} {
+      // Any authorized user can always read
+      allow read: if request.auth != null;
+    }
+  }
+
+  
+  // cars
+  match /databases/{database}/documents {
+    match /cars/{car_id} {
+      // Only the authenticated user who authored the document can read or write
+      allow read, write: if request.auth != null && request.auth.uid == resource.data.driver_id;
+    }
+  }
+  
+  // bookings
+  match /databases/{database}/documents {
+  	match /bookings/{booking_id} {
+    	// Only the authenticated user who authored the document can read or write
+      allow read, write: if request.auth != null && request.auth.uid == resource.data.driver_id;
+    }
+  }
+  
+  // users
+  match /databases/{database}/documents {
+		match /users/{user_id} {
+    	// Only the authenticated user who authored the document can read or write
+      allow read, write: if request.auth != null && request.auth.uid == user_id
+    }
+  }
+}
