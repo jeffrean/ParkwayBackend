@@ -1,0 +1,87 @@
+# Firebase Cloud Storage Schemas
+
+## Listings
+- owner_id
+  - description: UID of the listing owner
+  - type: string
+- location
+  - description: geopoint location of this listing
+  - type: geopoint
+- active
+  - description: flag indicating if this listing is active
+  - type: boolean
+- title
+  - description: short title of the listing
+  - type: string
+- image_paths
+  - description: paths to listing images in Firebase cloud storage
+  - type: string[]
+- description
+  - description: description of listing
+  - type: string
+- special_instructions
+  - description: special instructions for the driver to follow
+  - type: string
+- address
+  - description: address of parking spot
+  - type: string
+- city
+  - description: city of parking spot
+  - type: string
+- zip_code
+  - description: zip code of parking spot
+  - type: number
+- state
+  - description: state of parking spot
+  - type: string
+- rates
+  - description: map of various parking spot rates
+  - hourly
+    - description: hourly rate
+    - type: number
+  - daily
+    - description: daily rate
+    - type: number
+  - monthly
+    - description: monthly rate
+    - type: number
+
+## Bookings
+- listing
+  - description: reference to listing for this booking
+  - type: reference(listings)
+- car
+  - description: reference to car used for booking
+  - type: reference(cars)
+- driver_id
+  - description: user id of driver
+  - type: string
+- start
+  - description: start time of booking
+  - type: timestamp
+- stop
+  - description: stop time of booking
+  - type: timestamp
+- rate
+  - description: rate at which this listing was reserved
+  - type: number
+- total_price
+  - description: total price after fees and taxes
+  - type: number
+- type
+  - description: one of daily, hourly, monthly
+  - type: string
+
+## Cars
+- plate_number
+  - description: license plate number
+  - type: string
+- driver_id
+  - description: user id of the driver
+  - type: string
+- make
+  - description: make of car
+  - type: string
+- model
+  - description: model of car
+  - type: string
