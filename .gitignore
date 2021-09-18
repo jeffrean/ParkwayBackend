@@ -1,3 +1,4 @@
 node_modules/
 emulator_service_key.json
 *.log
+.runtimeconfig.json
