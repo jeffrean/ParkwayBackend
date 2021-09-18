@@ -1,0 +1,12 @@
+{
+    "title": "Test Listing",
+    "description": "Test Description",
+    "special_instructions": "Special Instructions",
+    "house_number": "71",
+    "street": "White Hill Rd",
+    "state": "NY",
+    "zip_code": "11724",
+    "rates": {
+        "hourly": 6.9
+    }
+}

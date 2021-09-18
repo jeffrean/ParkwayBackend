@@ -22,8 +22,11 @@
 - special_instructions
   - description: special instructions for the driver to follow
   - type: string
-- address
-  - description: address of parking spot
+- house_number
+  - description: number of house or building
+  - type: string
+- street
+  - description: street name
   - type: string
 - city
   - description: city of parking spot
