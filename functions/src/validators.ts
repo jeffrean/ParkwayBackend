@@ -39,7 +39,7 @@ export const createListingValidator = ajv.compile({
   additionalProperties: false,
 });
 
-export const addListingImagesValidator = ajv.compile({
+export const addListingImageValidator = ajv.compile({
   type: "object",
   properties: {
     image_bytes: { type: "string" }

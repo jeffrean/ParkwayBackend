@@ -24,7 +24,7 @@ def send_image(listing_id, image_path):
     with open(image_path, 'rb') as fp:
         image_bytes = base64.b64encode(fp.read()).decode('utf-8')
 
-    r = requests.post(f'{BASE_URL}/addListingImages',
+    r = requests.post(f'{BASE_URL}/addListingImage',
                       params={'listing_id': listing_id},
                       json={'image_bytes': image_bytes})
     print(r)

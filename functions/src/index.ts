@@ -61,11 +61,29 @@ export const createListing = functions.https.onRequest(async (request, response)
   return;
 });
 
-export const addListingImages = functions.https.onRequest((request, response) => {
+export const addListingImage = functions.https.onRequest(async (request, response) => {
   const data = request.body;
-  const valid = validators.addListingImagesValidator(data) && request.query.listing_id;
+  const valid = validators.addListingImageValidator(data) && request.query.listing_id;
 
   if (!valid) {
+    response.sendStatus(400);
+    return;
+  }
+
+  // Verify that document exists for listing
+  try {
+    const doc = await admin.firestore()
+      .collection("listings")
+      .doc(request.query.listing_id as string)
+      .get();
+    
+    if (!doc.exists) {
+      response.status(400).send("Document does not exist");
+      return;
+    }
+  }
+  catch(err) {
+    functions.logger.error(err);
     response.sendStatus(400);
     return;
   }
